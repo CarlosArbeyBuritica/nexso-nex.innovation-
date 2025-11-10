@@ -4,47 +4,220 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Nexso Next Innovation</title>
-<link rel="icon" href="{{ url_for('static', filename='imagenes/logo.png') }}">
-  <!-- favicon -->
-  <link rel="icon" type="image/png" href="{{ url_for('static', filename='logo.png') }}">
+  <link rel="icon" href="{{ url_for('static', filename='imagenes/logo.png') }}">
   <style>
-    :root{--gold:#ffd700;--bg:#0b0b0b;--panel:#111;--muted:#ccc}
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,system-ui,Arial;background:var(--bg);color:#fff}
-    header{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:linear-gradient(90deg,#0e0e0e,#111)}
-    .brand{display:flex;gap:12px;align-items:center}
-    .brand h1{margin:0;color:var(--gold);font-size:1.1rem}
-    nav a{color:#fff;margin-left:12px;text-decoration:none;font-weight:700}
-    nav a:hover{color:var(--gold)}
-    .hero{padding:36px 12px;text-align:center}
-    .box{max-width:1100px;margin:auto;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:20px;border-radius:12px}
-    .cta{display:inline-block;padding:10px 16px;border-radius:10px;background:var(--gold);color:#000;font-weight:800;text-decoration:none;margin-top:12px}
-    .presentation{margin-top:22px;padding:20px;background:var(--panel);border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,0.6)}
-    .typing{color:var(--gold);font-weight:700}
-    .grid-cats{display:flex;gap:18px;max-width:1100px;margin:26px auto;justify-content:center;padding:0 12px}
-    .cat-card{background:#0f0f0f;border-radius:12px;padding:18px;width:320px;cursor:pointer;transition:transform .25s, box-shadow .25s; text-align:left;transform-style:preserve-3d}
-    .cat-card:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(0,0,0,0.6)}
-    .cat-card h3{color:var(--gold);margin:8px 0}
-    .preview-thumb{width:100%;height:160px;object-fit:cover;border-radius:8px;display:block}
-    .footer{padding:20px;text-align:center;color:rgba(255,255,255,0.7)}
-    #btn-audio{position:fixed;bottom:20px;right:20px;background:var(--gold);color:#000;border:none;border-radius:50%;width:50px;height:50px;cursor:pointer;font-size:20px;box-shadow:0 6px 18px rgba(0,0,0,0.4)}
-    .cursor{display:inline-block;width:8px;background:var(--gold);margin-left:6px;animation:blink 1s steps(1) infinite}
-    @keyframes blink{50%{opacity:0}}
-    @media(max-width:900px){ .grid-cats{flex-direction:column;align-items:center} .cat-card{width:92%}}
+    :root {
+      --gold: #ffd700;
+      --bg: #0b0b0b;
+      --panel: #111;
+      --muted: #ccc;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Inter", system-ui, Arial;
+      background: var(--bg);
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      background: linear-gradient(90deg, #0e0e0e, #111);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand h1 {
+      margin: 0;
+      color: var(--gold);
+      font-size: 1.1rem;
+      letter-spacing: 0.5px;
+    }
+
+    nav {
+      display: flex;
+      gap: 12px;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    nav a:hover { color: var(--gold); }
+
+    /* Botón hamburguesa móvil */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--gold);
+      font-size: 1.6rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        position: fixed;
+        top: 60px;
+        right: 0;
+        background: rgba(15, 15, 15, 0.95);
+        flex-direction: column;
+        padding: 20px;
+        border-left: 1px solid #222;
+        border-radius: 10px 0 0 10px;
+        gap: 15px;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+      }
+
+      nav.active {
+        transform: translateX(0);
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+    }
+
+    /* Hero principal */
+    .hero {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .box {
+      max-width: 900px;
+      margin: auto;
+      background: rgba(255, 255, 255, 0.02);
+      padding: 26px;
+      border-radius: 16px;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .box h2 {
+      font-size: 1.6rem;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .presentation {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .cta {
+      display: inline-block;
+      padding: 12px 20px;
+      border-radius: 10px;
+      background: var(--gold);
+      color: #000;
+      font-weight: 800;
+      text-decoration: none;
+      margin-top: 16px;
+      transition: all 0.25s;
+    }
+
+    .cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px rgba(255, 215, 0, 0.4);
+    }
+
+    /* Categorías */
+    .grid-cats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 16px;
+    }
+
+    .cat-card {
+      background: #111;
+      border-radius: 14px;
+      padding: 16px;
+      transition: transform 0.25s, box-shadow 0.25s;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .cat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .cat-card h3 {
+      color: var(--gold);
+      margin: 12px 0 8px;
+      font-size: 1.2rem;
+    }
+
+    .cat-card p {
+      color: #aaa;
+      font-size: 0.95rem;
+    }
+
+    .footer {
+      padding: 20px;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.9rem;
+      border-top: 1px solid #222;
+    }
+
+    #btn-audio {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--gold);
+      color: #000;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      font-size: 20px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 8px;
+      background: var(--gold);
+      margin-left: 6px;
+      animation: blink 1s steps(1) infinite;
+    }
+
+    @keyframes blink { 50% { opacity: 0; } }
   </style>
 </head>
-
 <body>
 
 <header>
   <div class="brand">
-    <!-- Logo -->
-    <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo Nexso" style="height:50px;border-radius:8px;margin-right:10px;">
+    <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo Nexso" style="height:48px;border-radius:8px;">
     <div>
       <h1>{{ site.titulo }}</h1>
       <div style="font-size:0.9rem;color:rgba(255,255,255,0.7)">{{ site.telefono }}</div>
     </div>
   </div>
+  <button class="menu-toggle" onclick="document.querySelector('nav').classList.toggle('active')">☰</button>
   <nav>
     <a href="{{ url_for('catalog') }}">Catálogo</a>
     <a href="{{ url_for('categoria', nombre='Tecnologia') }}">Tecnología</a>
@@ -59,72 +232,57 @@
     <h2>Bienvenido a <strong style="color:var(--gold)">Nexso Next Innovation</strong></h2>
     <p class="presentation">
       <span id="typed" class="typing"></span><span class="cursor"></span>
-      <div style="margin-top:12px;color:var(--muted);max-width:900px;margin-left:auto;margin-right:auto">
+      <div style="margin-top:12px;color:var(--muted);max-width:800px;margin:auto">
         Innovación y Diseño — Tecnología aplicada a productos únicos.
       </div>
-      <div style="margin-top:14px">
-        <a class="cta" href="/catalog">Explorar catálogo</a>
-      </div>
+      <a class="cta" href="/catalog">Explorar catálogo</a>
     </p>
   </div>
 </section>
 
 <section class="grid-cats">
   <div class="cat-card" onclick="location.href='/categoria/Tecnologia'">
-      <div style="width:100%;height:160px;background:linear-gradient(90deg,#111,#222);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#888">Sin imagen</div>
-    <h3>Tecnologia</h3>
-    <p style="color:#ccc">Productos innovadores, gadgets y soluciones tecnológicas.</p>
+    <div style="width:100%;height:160px;background:linear-gradient(90deg,#111,#222);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#888">Sin imagen</div>
+    <h3>Tecnología</h3>
+    <p>Productos innovadores, gadgets y soluciones tecnológicas.</p>
   </div>
 
   <div class="cat-card" onclick="location.href='/categoria/Diseno'">
-      <div style="width:100%;height:160px;background:linear-gradient(90deg,#111,#222);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#888">Sin imagen</div>
+    <div style="width:100%;height:160px;background:linear-gradient(90deg,#111,#222);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#888">Sin imagen</div>
     <h3>Diseño</h3>
-    <p style="color:#ccc">Objetos, decoración y artículos con gran estilo y estética.</p>
+    <p>Objetos, decoración y artículos con gran estilo y estética.</p>
   </div>
 </section>
 
 <footer class="footer">© 2025 Nexso Next Innovation</footer>
 
-<!-- Audio bienvenida -->
 <audio id="welcome-audio" src="{{ url_for('serve_audio', filename='bienvenida.ogg') }}" preload="auto"></audio>
 <button id="btn-audio">🔊</button>
 
 <script>
-  // Activar audio tras primer clic (evita bloqueo automático)
-  document.addEventListener('click', () => {
-    const audio = document.getElementById('welcome-audio');
-    audio.play().catch(err => console.log('Autoplay bloqueado:', err));
-  }, { once: true });
-
   // Efecto de escritura
   const txt = "Nos apasiona vender con confianza: calidad, rapidez y atención personalizada para cada cliente.";
-  let i = 0; 
+  let i = 0;
   const out = document.getElementById('typed');
-  function typeStep(){
-    if(i < txt.length){ 
-      out.textContent += txt.charAt(i); 
-      i++; 
-      setTimeout(typeStep, 28); 
+  function typeStep() {
+    if (i < txt.length) {
+      out.textContent += txt.charAt(i);
+      i++;
+      setTimeout(typeStep, 28);
     }
   }
-  window.addEventListener('load', ()=>{ typeStep(); });
+  window.addEventListener('load', typeStep);
 
-  // Control manual de audio
+  // Audio
   const audio = document.getElementById('welcome-audio');
   const btn = document.getElementById('btn-audio');
-  window.addEventListener('load', () => {
-    if(!sessionStorage.getItem('audioPlayed')) {
-      audio.volume = 0.7;
-      audio.play().catch(e => console.log('Autoplay bloqueado'));
-      sessionStorage.setItem('audioPlayed','1');
-    }
-  });
-  btn.addEventListener('click', ()=> {
-    if(audio.paused) audio.play().catch(()=>{});
-    else audio.pause();
+  window.addEventListener('click', () => {
+    audio.play().catch(() => {});
+  }, { once: true });
+  btn.addEventListener('click', () => {
+    if (audio.paused) audio.play(); else audio.pause();
     btn.textContent = audio.paused ? '🔇' : '🔊';
   });
 </script>
-
 </body>
 </html>
