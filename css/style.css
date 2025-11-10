@@ -1,0 +1,28 @@
+﻿/* static/css/style.css - estilos generales y del logo */
+.logo {
+  width: 140px;        /* tamaño en desktop */
+  max-width: 35vw;     /* se reduce en pantallas pequeñas */
+  height: auto;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 12px;  /* separación con el título */
+  border-radius: 6px;  /* opcional */
+  box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+}
+
+/* Ajustes para móviles */
+@media (max-width: 540px) {
+  .logo { width: 110px; margin-right:8px; }
+  .brand h1 { font-size: 1rem; }
+}
+
+/* Si quieres centrar el header en pantallas pequeñas */
+.brand {
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+@media (max-width: 900px) {
+  header { flex-direction: column; align-items: center; gap:8px; }
+  nav { margin-top: 8px; }
+}

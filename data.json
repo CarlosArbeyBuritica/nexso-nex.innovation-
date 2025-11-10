@@ -1,0 +1,17 @@
+{
+  "site": {
+    "titulo": "Nexso Next Innovation",
+    "descripcion": "Innovación y Diseño — Tecnología aplicada a productos únicos.",
+    "telefono": "3223007570, 3225466931",
+    "cart_button_text": "🛒 Carrito"
+  },
+  "categories": [
+    "Tecnologia",
+    "Diseno"
+  ],
+  "products": {},
+  "admin": {
+    "username": "admin",
+    "password_hash": "scrypt:32768:8:1$g2W5Du8D4tW2MEfU$cdd1e180cba599fa2577055d1faa5af7224d29a6123c49fd0e5ee7592a536e2c9304f79515947ab92d707517bdc9e3c6acdcaf1c0651ba298f68b3fbe36275a7"
+  }
+}
