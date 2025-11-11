@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>Nexso Next Innovation</title>
   <link rel="icon" href="{{ url_for('static', filename='imagenes/logo.png') }}">
   <style>
@@ -19,6 +19,7 @@
       background: var(--bg);
       color: #fff;
       overflow-x: hidden;
+      line-height: 1.5;
     }
 
     header {
@@ -36,13 +37,18 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      flex-shrink: 0;
     }
 
     .brand h1 {
-      margin: 0;
       color: var(--gold);
       font-size: 1.1rem;
-      letter-spacing: 0.5px;
+      margin-bottom: 2px;
+    }
+
+    .brand div {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.7);
     }
 
     nav {
@@ -55,62 +61,61 @@
       text-decoration: none;
       font-weight: 600;
       transition: color 0.3s;
+      font-size: 0.95rem;
     }
 
     nav a:hover { color: var(--gold); }
 
-    /* Botón hamburguesa móvil */
     .menu-toggle {
       display: none;
       background: none;
       border: none;
       color: var(--gold);
-      font-size: 1.6rem;
+      font-size: 1.8rem;
       cursor: pointer;
     }
 
     @media (max-width: 768px) {
       nav {
         position: fixed;
-        top: 60px;
+        top: 0;
         right: 0;
-        background: rgba(15, 15, 15, 0.95);
+        width: 70%;
+        height: 100vh;
+        background: rgba(10, 10, 10, 0.98);
         flex-direction: column;
-        padding: 20px;
-        border-left: 1px solid #222;
-        border-radius: 10px 0 0 10px;
-        gap: 15px;
+        align-items: center;
+        justify-content: center;
+        gap: 25px;
         transform: translateX(100%);
-        transition: transform 0.3s ease;
+        transition: transform 0.35s ease;
+        border-left: 1px solid #222;
       }
 
-      nav.active {
-        transform: translateX(0);
-      }
+      nav.active { transform: translateX(0); }
 
       .menu-toggle {
         display: block;
       }
     }
 
-    /* Hero principal */
     .hero {
-      padding: 60px 20px;
+      padding: 70px 20px;
       text-align: center;
     }
 
     .box {
       max-width: 900px;
       margin: auto;
-      background: rgba(255, 255, 255, 0.02);
+      background: rgba(255,255,255,0.03);
       padding: 26px;
       border-radius: 16px;
       backdrop-filter: blur(5px);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
 
     .box h2 {
-      font-size: 1.6rem;
+      font-size: 1.7rem;
       color: var(--gold);
       margin-bottom: 12px;
     }
@@ -118,7 +123,6 @@
     .presentation {
       font-size: 1rem;
       color: var(--muted);
-      line-height: 1.6;
     }
 
     .cta {
@@ -135,13 +139,12 @@
 
     .cta:hover {
       transform: translateY(-3px);
-      box-shadow: 0 6px 18px rgba(255, 215, 0, 0.4);
+      box-shadow: 0 6px 18px rgba(255,215,0,0.4);
     }
 
-    /* Categorías */
     .grid-cats {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
       max-width: 1000px;
       margin: 40px auto;
@@ -159,7 +162,7 @@
 
     .cat-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.5);
     }
 
     .cat-card h3 {
@@ -173,10 +176,10 @@
       font-size: 0.95rem;
     }
 
-    .footer {
+    footer {
       padding: 20px;
       text-align: center;
-      color: rgba(255, 255, 255, 0.6);
+      color: rgba(255,255,255,0.6);
       font-size: 0.9rem;
       border-top: 1px solid #222;
     }
@@ -193,7 +196,7 @@
       height: 50px;
       cursor: pointer;
       font-size: 20px;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.4);
     }
 
     .cursor {
@@ -214,7 +217,7 @@
     <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo Nexso" style="height:48px;border-radius:8px;">
     <div>
       <h1>{{ site.titulo }}</h1>
-      <div style="font-size:0.9rem;color:rgba(255,255,255,0.7)">{{ site.telefono }}</div>
+      <div>{{ site.telefono }}</div>
     </div>
   </div>
   <button class="menu-toggle" onclick="document.querySelector('nav').classList.toggle('active')">☰</button>
@@ -231,7 +234,7 @@
   <div class="box">
     <h2>Bienvenido a <strong style="color:var(--gold)">Nexso Next Innovation</strong></h2>
     <p class="presentation">
-      <span id="typed" class="typing"></span><span class="cursor"></span>
+      <span id="typed"></span><span class="cursor"></span>
       <div style="margin-top:12px;color:var(--muted);max-width:800px;margin:auto">
         Innovación y Diseño — Tecnología aplicada a productos únicos.
       </div>
@@ -254,13 +257,12 @@
   </div>
 </section>
 
-<footer class="footer">© 2025 Nexso Next Innovation</footer>
+<footer>© 2025 Nexso Next Innovation</footer>
 
 <audio id="welcome-audio" src="{{ url_for('serve_audio', filename='bienvenida.ogg') }}" preload="auto"></audio>
 <button id="btn-audio">🔊</button>
 
 <script>
-  // Efecto de escritura
   const txt = "Nos apasiona vender con confianza: calidad, rapidez y atención personalizada para cada cliente.";
   let i = 0;
   const out = document.getElementById('typed');
@@ -273,7 +275,6 @@
   }
   window.addEventListener('load', typeStep);
 
-  // Audio
   const audio = document.getElementById('welcome-audio');
   const btn = document.getElementById('btn-audio');
   window.addEventListener('click', () => {
@@ -284,5 +285,6 @@
     btn.textContent = audio.paused ? '🔇' : '🔊';
   });
 </script>
+
 </body>
 </html>
